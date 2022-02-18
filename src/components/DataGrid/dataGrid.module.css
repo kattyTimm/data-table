@@ -1,0 +1,30 @@
+.table{ 
+  margin:  0 auto;
+  width:  80%;
+}
+
+.header{
+   width: 90%;
+   margin:  20px auto;
+   display: flex !important;
+   flex-direction: row !important;
+   justify-content: space-between;
+}
+
+.calendarTmp{
+  display: flex !important;
+  flex-grow: 1;
+}
+
+.toTmp{
+    margin-left: 20px !important;
+    width:  30% !important;
+}
+
+.fromTmp{
+   width:  30% !important;
+}
+
+.reset{
+  margin-left: 20px;
+}

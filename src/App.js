@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import 'devextreme/dist/css/dx.common.css';
+import 'devextreme/dist/css/dx.light.css';
+import React from 'react';
+import {connect} from 'react-redux';
+
+import {initialThunk} from './redux/appReducer';
+import DataGridContainer from './components/DataGrid/DataGrid';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  componentDidMount(){
+     this.props.getInitial(true);
+  }
+
+  render(){
+      if(!this.props.initialazed) return 'preloader';
+
+      return (
+      <div className="App">          
+          <DataGridContainer />         
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    initialazed: state.app.initialazed,
+    items: state.app.items
+  };
+};
+
+export default connect(mapStateToProps, {getInitial: initialThunk})(App);
